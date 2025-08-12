@@ -2,6 +2,15 @@ import React from 'react'
 
 
 const Background = () => {
+  const youtubeUrl = 'https://www.youtube.com/watch?v=h7oqtfgvT64'
+  const handleClick = (e) => {
+    // Attempt new tab first; fall back to same-tab if blocked
+    const win = window.open(youtubeUrl, '_blank', 'noopener,noreferrer')
+    if (!win) {
+      window.location.href = youtubeUrl
+    }
+  }
+
   return (
     <div>
       <div className='w-full h-screen bg-gradient-to-br from-[#0a031a] via-[#11032c] to-[#16043a] bg-vignette flex items-center justify-center p-6 sm:p-10'>
@@ -12,9 +21,10 @@ const Background = () => {
         </div>
         <div className='flex justify-center items-center'>
           <a
-            href="https://www.youtube.com/watch?v=h7oqtfgvT64"
+            href={youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => { e.preventDefault(); handleClick(); }}
             className="no-tap-highlight touch-manipulation rainbow-button rainbow-animate text-white btn-label font-semibold px-7 py-4 sm:px-8 sm:py-4 rounded-2xl shadow-lg active:scale-95 transition-transform duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-base sm:text-lg whitespace-nowrap"
           >
             Click to know about me
